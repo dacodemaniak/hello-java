@@ -6,7 +6,9 @@ package com.ideafactory.hello;
 import java.util.Random;
 
 import com.ideafactory.models.Hero;
+import com.ideafactory.models.HeroesRepository;
 import com.ideafactory.models.SpiteFul;
+import com.ideafactory.models.SpiteFulRepository;
 import com.ideafactory.models.Character;
 
 /**
@@ -34,7 +36,14 @@ public class Combat {
 			break;
 		}
 		
-		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName() + "remporte. Points : " + winner.getLifePoints();
+		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName() + " remporte. Points : " + winner.getLifePoints();
+	}
+	
+	public String fight(HeroesRepository heroes, SpiteFulRepository spiteFuls) {
+		int heroIndex = new Random().nextInt(heroes.size());
+		int spiteFulIndex = new Random().nextInt(spiteFuls.size());
+		
+		return this.fight(heroes.get(heroIndex), spiteFuls.get(spiteFulIndex));
 	}
 	
 	private Character fightWinner(Hero hero, SpiteFul spiteFul) {

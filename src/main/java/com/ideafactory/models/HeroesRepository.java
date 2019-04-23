@@ -50,4 +50,8 @@ public class HeroesRepository implements Repository<Hero> {
 		return allHeroes;
 	}
 	
+	@Override
+	public int size() {
+		return this.heroes.size();
+	}
 }

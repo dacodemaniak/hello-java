@@ -4,6 +4,7 @@ import com.ideafactory.hello.patterns.HeroFactory;
 import com.ideafactory.models.Hero;
 import com.ideafactory.models.HeroesRepository;
 import com.ideafactory.models.SpiteFul;
+import com.ideafactory.models.SpiteFulRepository;
 
 /**
  * Hello world!
@@ -23,6 +24,7 @@ public class App
     public App() {
     	// Create Hero repository
     	HeroesRepository heroes = new HeroesRepository();
+    	SpiteFulRepository spiteFuls = new SpiteFulRepository();
     	
     	// Create some heroes
     	Hero superman = new Hero("Superman");
@@ -44,8 +46,15 @@ public class App
     			.setLifePoints(200)
     			.setStrength(150);
     	
+    	spiteFuls.add(joker);
+    	
+    	// Un combat simple...
     	Combat fight = new Combat();
     	System.out.println(fight.fight(spiderman, joker));
+    	
+    	// Un combat aléatoire
+    	Combat aleatFight = new Combat();
+    	System.out.println(aleatFight.fight(heroes, spiteFuls));
     	
     	// Dump of heroes
     	System.out.println(heroes.dump());    	
