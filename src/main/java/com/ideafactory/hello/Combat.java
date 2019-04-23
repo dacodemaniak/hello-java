@@ -10,22 +10,31 @@ import com.ideafactory.models.SpiteFul;
 import com.ideafactory.models.Character;
 
 /**
- * @author jean-luc
+ * @author Aélion
  *
  */
 public class Combat {
 	public String fight(Hero hero, SpiteFul spiteFul) {
 		
 		Character winner = this.fightWinner(hero, spiteFul);
-		winner.wonFight();
 		
-		if (winner instanceof Hero) {
-			spiteFul.lostFight();
-		} else {
-			hero.lostFight();
+		Character looser = winner instanceof Hero ? spiteFul : hero;
+		
+		switch (winner.compareTo(looser)) {
+			case 0:
+				winner.wonFight(looser.lostFight(5));
+			break;
+			
+			case 1:
+				winner.wonFight(looser.lostFight(10));
+			break;
+			
+			case -1:
+				winner.wonFight(looser.lostFight(50));
+			break;
 		}
 		
-		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName();
+		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName() + " Points : " + winner.getLifePoints();
 	}
 	
 	private Character fightWinner(Hero hero, SpiteFul spiteFul) {

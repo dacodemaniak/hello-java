@@ -29,12 +29,14 @@ public class App
     	
     	// En utilisant classFactory
     	Hero spiderman = HeroFactory.createHero("Spiderman", 200);
+    	spiderman.setStrength(100);
     	System.out.println("Hello : " + spiderman.getName());
     	
     	// Création d'un méchant
     	SpiteFul joker = (SpiteFul) (new SpiteFul())
     				.setName("Joker")
-    				.setLifePoints(200);
+    				.setLifePoints(200)
+    				.setStrength(150);
     	
     	System.out.println(joker);
     	System.out.println(spiderman);

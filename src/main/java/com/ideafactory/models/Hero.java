@@ -26,12 +26,30 @@ public class Hero extends Character {
 	@Override
 	public void lostFight() {
 		// TODO Auto-generated method stub
+		this.lifePoints -= 10;
 		
 	}
 
 	@Override
 	public void wonFight() {
 		// TODO Auto-generated method stub
+		this.lifePoints += 10;
+		
+	}
+
+
+	@Override
+	public int lostFight(int points) {
+		// TODO Auto-generated method stub
+		this.lifePoints -= points;
+		return points;
+	}
+
+
+	@Override
+	public void wonFight(int points) {
+		// TODO Auto-generated method stub
+		this.lifePoints += points;
 		
 	}
 	
