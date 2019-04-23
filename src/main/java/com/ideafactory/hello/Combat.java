@@ -34,7 +34,7 @@ public class Combat {
 			break;
 		}
 		
-		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName() + " Points : " + winner.getLifePoints();
+		return hero.getName() + " combat " + spiteFul.getName() + " => " + winner.getName() + "remporte. Points : " + winner.getLifePoints();
 	}
 	
 	private Character fightWinner(Hero hero, SpiteFul spiteFul) {

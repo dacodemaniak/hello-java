@@ -19,7 +19,7 @@ public abstract class Character implements Comparable<Character> {
 			return 0;
 		}
 		
-		return character.getStrength() > this.getStrength() ? 1 : -1;
+		return character.getStrength() > this.getStrength() ? -1 : 1;
 	}
 	
 	/**

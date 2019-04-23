@@ -50,7 +50,6 @@ public class Hero extends Character {
 	public void wonFight(int points) {
 		// TODO Auto-generated method stub
 		this.lifePoints += points;
-		
 	}
 	
 	
