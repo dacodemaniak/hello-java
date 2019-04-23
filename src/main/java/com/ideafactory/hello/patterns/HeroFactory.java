@@ -11,6 +11,6 @@ import com.ideafactory.models.Hero;
  */
 public class HeroFactory {
 	public static Hero createHero(String name, int lifePoints) {
-		return new Hero(name).setLifePoints(lifePoints);
+		return (Hero) new Hero(name).setLifePoints(lifePoints);
 	}
 }

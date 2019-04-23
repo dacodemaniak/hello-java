@@ -24,7 +24,7 @@ public class App
     	Hero superman = new Hero("Superman");
     	System.out.println("Hello " + superman.getName());
     	
-    	Hero heilreiser = (new Hero("Hellreiser")).setLifePoints(100);
+    	Hero heilreiser = (Hero) (new Hero("Hellreiser")).setLifePoints(100);
     	System.out.println("Hello : " + heilreiser.getName());
     	
     	// En utilisant classFactory
@@ -32,9 +32,12 @@ public class App
     	System.out.println("Hello : " + spiderman.getName());
     	
     	// Création d'un méchant
-    	SpiteFul joker = (new SpiteFul())
+    	SpiteFul joker = (SpiteFul) (new SpiteFul())
     				.setName("Joker")
     				.setLifePoints(200);
+    	
+    	System.out.println(joker);
+    	System.out.println(spiderman);
     	
     	Combat fight = new Combat();
     	System.out.println(fight.fight(spiderman, joker));

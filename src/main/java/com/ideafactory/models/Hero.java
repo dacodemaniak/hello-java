@@ -8,33 +8,31 @@ package com.ideafactory.models;
  *
  */
 
-public class Hero {
+public class Hero extends Character {
 
-	private String name;
-	private int lifePoints;
 	
 	public Hero(String name) {
 		this.name = name;
 	}
 	
-	public String getName() {
-		return this.name;
-	}
-
-	public int getLifePoints() {
-		return lifePoints;
-	}
-
-	public Hero setLifePoints(int lifePoints) {
-		this.lifePoints = lifePoints;
-		return this;
-	}
 	
 	public int combat() {
 		if ( this.lifePoints > 50 ) {
 			return this.lifePoints - 50;
 		}
 		return 0;
+	}
+
+	@Override
+	public void lostFight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void wonFight() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

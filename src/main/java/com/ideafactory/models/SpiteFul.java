@@ -1,23 +1,19 @@
 package com.ideafactory.models;
 
-public class SpiteFul {
-	private String name;
-	private int lifePoints;
+public class SpiteFul extends Character {
 	
-	public String getName() {
-		return name;
+	public String toString() {
+		return this.getName() + " : " + this.lifePoints;
 	}
-	public SpiteFul setName(String name) {
-		this.name = name;
-		return this;
+	@Override
+	public void lostFight() {
+		// TODO Auto-generated method stub
+		
 	}
-	public int getLifePoints() {
-		return lifePoints;
+	@Override
+	public void wonFight() {
+		// TODO Auto-generated method stub
+		
 	}
-	public SpiteFul setLifePoints(int lifePoints) {
-		this.lifePoints = lifePoints;
-		return this;
-	}
-	
 	
 }
