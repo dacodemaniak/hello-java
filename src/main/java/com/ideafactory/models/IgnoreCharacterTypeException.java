@@ -4,7 +4,7 @@
 package com.ideafactory.models;
 
 /**
- * @author jean-luc
+ * @author Aélion
  *
  */
 public class IgnoreCharacterTypeException extends Exception {

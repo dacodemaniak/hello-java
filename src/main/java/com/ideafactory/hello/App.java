@@ -30,33 +30,34 @@ public class App
     	try {
     		Hero superman = (Hero) HeroFactory.createCharacter("hero", "superman", 100, 200);
     		heroes.add(superman);
+    		
+    		Hero hellreiser = (Hero) HeroFactory.createCharacter("hero", "Hellreiser", 150, 80);
+    		heroes.add(hellreiser);
+    		
+    		Hero spiderman = (Hero) HeroFactory.createCharacter("hero", "Spiderman", 100, 200);
+    		heroes.add(spiderman);
+    		SpiteFul joker = (SpiteFul) HeroFactory.createCharacter("spiteful", "Joker", 150, 250);
+    		spiteFuls.add(joker);
+    		
+    		SpiteFul dracula = (SpiteFul) HeroFactory.createCharacter("spiteful", "Dracula", 100, 100);
+    		spiteFuls.add(dracula);
+    		
+    		SpiteFul bad = (SpiteFul) HeroFactory.createCharacter("mechant", "Bad", 200, 150);
+    		spiteFuls.add(bad);
+        	
     	} catch (IgnoreCharacterTypeException e) {
+    		System.out.println("Une erreur est survenue lors de la création d'un des personnages");
     		System.out.println(e.getMessage());
     	}
     	
-    	Hero hellreiser = (Hero) HeroFactory.createCharacter("hero", "Hellreiser", 150, 80);
-    	Hero spiderman = (Hero) HeroFactory.createCharacter("hero", "Spiderman", 100, 200);
-    	SpiteFul joker = (SpiteFul) HeroFactory.createCharacter("spiteful", "Joker", 150, 250);
-    	SpiteFul dracula = (SpiteFul) HeroFactory.createCharacter("spiteful", "Dracula", 100, 100);
-    	
-    	
-    	heroes.add(hellreiser);
-    	heroes.add(spiderman);
-    	
-    	spiteFuls.add(joker);
-    	spiteFuls.add(dracula);
-    	
-    	
-    	// Un combat simple...
-    	Combat fight = new Combat();
-    	System.out.println(fight.fight(spiderman, joker));
+    	// Dump of heroes
+    	System.out.println(heroes.dump());
     	
     	// Un combat aléatoire
     	Combat aleatFight = new Combat();
     	System.out.println(aleatFight.fight(heroes, spiteFuls));
     	
-    	// Dump of heroes
-    	System.out.println(heroes.dump());    	
+   	
     }
     
     public App(String heroesName) {
