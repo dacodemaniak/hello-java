@@ -16,6 +16,7 @@ public class AppProperties {
 		try {
 			properties.load(new FileInputStream(AppProperties.propertiesFile));
 			AppProperties.properties.put("server", properties.getProperty("server"));
+			AppProperties.properties.put("port", properties.getProperty("port"));
 			AppProperties.properties.put("host", properties.getProperty("host"));
 			AppProperties.properties.put("user", properties.getProperty("user"));
 			AppProperties.properties.put("password", properties.getProperty("password"));
