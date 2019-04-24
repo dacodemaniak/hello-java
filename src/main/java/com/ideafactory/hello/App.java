@@ -3,6 +3,7 @@ package com.ideafactory.hello;
 import com.ideafactory.hello.patterns.HeroFactory;
 import com.ideafactory.models.Hero;
 import com.ideafactory.models.HeroesRepository;
+import com.ideafactory.models.IgnoreCharacterTypeException;
 import com.ideafactory.models.SpiteFul;
 import com.ideafactory.models.SpiteFulRepository;
 
@@ -15,7 +16,6 @@ public class App
     public static void main( String[] args )
     {
         new App();
-        new App("Batman");
     }
     
     /**
@@ -26,27 +26,26 @@ public class App
     	HeroesRepository heroes = new HeroesRepository();
     	SpiteFulRepository spiteFuls = new SpiteFulRepository();
     	
-    	// Create some heroes
-    	Hero superman = new Hero("Superman");
-    	heroes.add(superman);
-    	System.out.println("Hello " + superman.getName());
+    	// Use HeroFactory to create Heroes and SpiteFul
+    	try {
+    		Hero superman = (Hero) HeroFactory.createCharacter("hero", "superman", 100, 200);
+    		heroes.add(superman);
+    	} catch (IgnoreCharacterTypeException e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    	Hero hellreiser = (Hero) HeroFactory.createCharacter("hero", "Hellreiser", 150, 80);
+    	Hero spiderman = (Hero) HeroFactory.createCharacter("hero", "Spiderman", 100, 200);
+    	SpiteFul joker = (SpiteFul) HeroFactory.createCharacter("spiteful", "Joker", 150, 250);
+    	SpiteFul dracula = (SpiteFul) HeroFactory.createCharacter("spiteful", "Dracula", 100, 100);
     	
     	
-    	Hero heilreiser = (Hero) (new Hero("Hellreiser")).setLifePoints(100);
-    	heroes.add(heilreiser);
-    	
-    	// En utilisant classFactory
-    	Hero spiderman = HeroFactory.createHero("Spiderman", 200);
-    	spiderman.setStrength(100);
+    	heroes.add(hellreiser);
     	heroes.add(spiderman);
     	
-    	// Création d'un méchant
-    	SpiteFul joker = (SpiteFul) (new SpiteFul())
-    			.setName("Joker")
-    			.setLifePoints(200)
-    			.setStrength(150);
-    	
     	spiteFuls.add(joker);
+    	spiteFuls.add(dracula);
+    	
     	
     	// Un combat simple...
     	Combat fight = new Combat();

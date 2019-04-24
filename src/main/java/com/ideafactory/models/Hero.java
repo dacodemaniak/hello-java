@@ -15,6 +15,7 @@ public class Hero extends Character {
 		this.name = name;
 	}
 	
+	public Hero() {}
 	
 	public int combat() {
 		if ( this.lifePoints > 50 ) {
