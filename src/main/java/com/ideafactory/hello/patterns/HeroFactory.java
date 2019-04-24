@@ -6,7 +6,7 @@ package com.ideafactory.hello.patterns;
 import com.ideafactory.models.Hero;
 
 /**
- * @author jean-luc
+ * @author Aélion
  *
  */
 public class HeroFactory {
