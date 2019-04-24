@@ -1,6 +1,8 @@
 package com.ideafactory.hello;
 
+import com.ideafactory.hello.interfaces.Repository;
 import com.ideafactory.hello.patterns.HeroFactory;
+import com.ideafactory.hello.patterns.RepositoryRegistry;
 import com.ideafactory.models.Hero;
 import com.ideafactory.models.HeroesRepository;
 import com.ideafactory.models.IgnoreCharacterTypeException;
@@ -26,43 +28,41 @@ public class App
     	HeroesRepository heroes = new HeroesRepository();
     	SpiteFulRepository spiteFuls = new SpiteFulRepository();
     	
+    	// Refactorage en passant par un Registry
+    	RepositoryRegistry repositories = new RepositoryRegistry();
+    	repositories.add("heroes", heroes);
+    	repositories.add("spitefuls", spiteFuls);
+    	
     	// Use HeroFactory to create Heroes and SpiteFul
     	try {
-    		Hero superman = (Hero) HeroFactory.createCharacter("hero", "superman", 100, 200);
-    		heroes.add(superman);
+    		// Injecter le "registry" des listes de personnages
+    		HeroFactory.setRegistryContainer(repositories);
     		
-    		Hero hellreiser = (Hero) HeroFactory.createCharacter("hero", "Hellreiser", 150, 80);
-    		heroes.add(hellreiser);
+    		HeroFactory.createCharacter("hero", "superman", 100, 200);
     		
-    		Hero spiderman = (Hero) HeroFactory.createCharacter("hero", "Spiderman", 100, 200);
-    		heroes.add(spiderman);
-    		SpiteFul joker = (SpiteFul) HeroFactory.createCharacter("spiteful", "Joker", 150, 250);
-    		spiteFuls.add(joker);
+    		HeroFactory.createCharacter("hero", "Hellreiser", 150, 80);
     		
-    		SpiteFul dracula = (SpiteFul) HeroFactory.createCharacter("spiteful", "Dracula", 100, 100);
-    		spiteFuls.add(dracula);
+    		HeroFactory.createCharacter("hero", "Spiderman", 100, 200);
     		
-    		SpiteFul bad = (SpiteFul) HeroFactory.createCharacter("mechant", "Bad", 200, 150);
-    		spiteFuls.add(bad);
+    		HeroFactory.createCharacter("spiteful", "Joker", 150, 250);
+    		
+    		HeroFactory.createCharacter("spiteful", "Dracula", 100, 100);
+    		
+    		HeroFactory.createCharacter("mechant", "Bad", 200, 150);
+    	
         	
     	} catch (IgnoreCharacterTypeException e) {
-    		System.out.println("Une erreur est survenue lors de la création d'un des personnages");
-    		System.out.println(e.getMessage());
+    		System.out.println("Erreur : "  + e.getMessage());
+    	} catch (Exception e) {
+    		
     	}
     	
     	// Dump of heroes
-    	System.out.println(heroes.dump());
+    	System.out.println(repositories.getSpiteFuls().dump());
     	
     	// Un combat aléatoire
     	Combat aleatFight = new Combat();
-    	System.out.println(aleatFight.fight(heroes, spiteFuls));
-    	
+    	System.out.println(aleatFight.fight(repositories.getHeroes(), repositories.getSpiteFuls()));
+    }
    	
-    }
-    
-    public App(String heroesName) {
-    	// Create another Hero
-    	Hero batman = new Hero(heroesName);
-    	System.out.println("Hello " + batman.getName());
-    }
 }
