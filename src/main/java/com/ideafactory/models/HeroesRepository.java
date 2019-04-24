@@ -41,7 +41,7 @@ public class HeroesRepository implements Repository<Hero> {
 	 * @return String
 	 */
 	public String dump() {
-		String allHeroes = new String();
+		String allHeroes = "";
 		
 		for(Hero hero : this.heroes) {
 			allHeroes += hero.getName() + '\n';		

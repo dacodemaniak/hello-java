@@ -42,5 +42,19 @@ public class SpiteFulRepository implements Repository<SpiteFul> {
 	public int size() {
 		return this.repository.size();
 	}
+	
+	/**
+	 * 
+	 * @return String
+	 */
+	public String dump() {
+		String allHeroes = "";
+		
+		for(SpiteFul spiteFul : this.repository) {
+			allHeroes += spiteFul.getName() + '\n';		
+		}
+		
+		return allHeroes;
+	}
 
 }
