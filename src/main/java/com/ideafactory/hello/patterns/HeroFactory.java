@@ -17,19 +17,20 @@ public class HeroFactory {
 	}
 	
 	public static Character createCharacter(String type, String name, int lifePoints, int strength) throws IgnoreCharacterTypeException {
-		if (type.toLowerCase() == "hero") {
+		if (type.toLowerCase().equals("hero")) {
 			return (Character) new Hero()
 					.setName(name)
 					.setLifePoints(lifePoints)
 					.setStrength(strength);
 		} else {
-			if (type.toLowerCase() == "spiteful") {
+			if (type.toLowerCase().equals("spiteful")) {
 				return (Character) new SpiteFul()
 							.setName(name)
 							.setLifePoints(lifePoints)
 							.setStrength(strength);
 			}
 		}
+		
 		throw new IgnoreCharacterTypeException();
 	}
 }
