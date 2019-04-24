@@ -49,13 +49,10 @@ public class MySqlConnect {
 	}
 	
 	public static Connection getConnexion() {
-		if (MySqlConnect.instance != null) {
-			System.out.println("J'ai déjà une instance, je te la retourne");
-			return MySqlConnect.instance;
+		if (MySqlConnect.instance == null) {
+			new MySqlConnect();
 		}
 		
-		System.out.println("J'instancie et je te retourne");
-		new MySqlConnect();
 		return MySqlConnect.instance;
 		
 	}

@@ -14,13 +14,12 @@ import com.ideafactory.hello.interfaces.Repository;
 public class SpiteFulRepository implements Repository<SpiteFul> {
 
 	private ArrayList<SpiteFul> repository = new ArrayList<SpiteFul>();
-	@Override
+
 	public void add(SpiteFul object) {
 		this.repository.add(object);
 		
 	}
 
-	@Override
 	public void remove(SpiteFul object) {
 		int index = this.repository.indexOf(object);
 		
@@ -30,7 +29,6 @@ public class SpiteFulRepository implements Repository<SpiteFul> {
 		
 	}
 
-	@Override
 	public SpiteFul get(int index) {
 		if (index >= this.repository.size() - 1) {
 			return this.repository.get(index);
@@ -38,7 +36,6 @@ public class SpiteFulRepository implements Repository<SpiteFul> {
 		return null;
 	}
 	
-	@Override
 	public int size() {
 		return this.repository.size();
 	}

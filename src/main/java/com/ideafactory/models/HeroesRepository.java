@@ -3,8 +3,13 @@
  */
 package com.ideafactory.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.ideafactory.database.MySqlConnect;
 import com.ideafactory.hello.interfaces.Repository;
 
 /**
@@ -18,6 +23,8 @@ public class HeroesRepository implements Repository<Hero> {
 	public final void add(Hero object) {
 		this.heroes.add(object);
 		
+		// Automate persistance
+		object.persist();
 	}
 
 	public final void remove(Hero object) {
@@ -50,7 +57,7 @@ public class HeroesRepository implements Repository<Hero> {
 		return allHeroes;
 	}
 	
-	@Override
+
 	public int size() {
 		return this.heroes.size();
 	}

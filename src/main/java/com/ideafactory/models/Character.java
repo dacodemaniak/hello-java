@@ -3,6 +3,12 @@
  */
 package com.ideafactory.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.ideafactory.database.MySqlConnect;
+
 /**
  * @author jean-luc
  *
@@ -13,6 +19,10 @@ public abstract class Character implements Comparable<Character> {
 	protected int lifePoints;
 	protected int strength = 100;
 
+	protected final String tableName = "characters";
+	
+	protected final String query = "INSERT INTO " + this.tableName + "(name,lifepoints,strength) VALUES (?,?,?);";
+	
 	
 	public int compareTo(Character character) {
 		if (character.getStrength() == this.getStrength() ) {
@@ -22,6 +32,23 @@ public abstract class Character implements Comparable<Character> {
 		return character.getStrength() > this.getStrength() ? -1 : 1;
 	}
 	
+	public boolean persist() {
+		try {
+			Connection connexion = MySqlConnect.getConnexion();
+			PreparedStatement sqlStatement = connexion.prepareStatement(this.query);
+			sqlStatement.setString(1, this.getName());
+			sqlStatement.setInt(2, this.getLifePoints());
+			sqlStatement.setInt(3, this.getStrength());
+			sqlStatement.execute();
+			MySqlConnect.close();
+			return true;
+ 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+				
+	}
 	/**
 	 * Set character name
 	 * @param name
